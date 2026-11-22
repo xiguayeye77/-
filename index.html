@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#050c1e">
+  <title>SHIQI · 王仕祺的个人站</title>
+  <meta name="description" content="王仕祺（SHIQI）的个人博客：AI 开发学习、3D 打印、无人机、摄影、台球，以及各种折腾记录。">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 幽灵纤维背景：React Bits Ghost Fibers 移植，梵高星空作底图 -->
+  <div class="bg" aria-hidden="true">
+    <div class="bg-base"></div>
+    <canvas id="ghostFibers" class="ghost-fibers-canvas"></canvas>
+    <div class="bg-tint"></div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollBar"></span></div>
+
+  <header class="site-header" id="siteHeader">
+    <a href="#home" class="brand" aria-label="回到首页">SHIQI<span>.</span></a>
+
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="#home" class="nav-link is-active">首页</a>
+      <a href="#projects" class="nav-link">项目</a>
+      <a href="#games" class="nav-link">游戏</a>
+      <a href="#web" class="nav-link">网页</a>
+      <a href="#manage" class="nav-link">文章管理</a>
+      <a href="#about" class="nav-link">关于</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <!-- 首屏 -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="avatar-wrap">
+          <img class="avatar" src="assets/avatar.jpg" alt="王仕祺的头像">
+        </div>
+        <p class="eyebrow">HEFEI · AI LEARNER · MAKER</p>
+        <h1 class="hero-name">
+          <span class="depth-text hero-depth-name" data-depth-text="王仕祺" role="img" aria-label="王仕祺">王仕祺</span>
+          <span class="hero-name-en">SHIQI</span>
+        </h1>
+        <div class="warp-text warp-intro"
+             data-warp-text="一位 AI 开发学习者，喜欢 3D 打印、无人机、摄影、台球。|性格开朗，喜欢折腾软件开发、产品开发。"
+             data-warp-mobile-text="一位 AI 开发学习者，|喜欢 3D 打印、无人机、摄影、台球。|性格开朗，|喜欢折腾软件开发、产品开发。"
+             data-warp-strength="0.032"
+             role="img"
+             aria-label="一位 AI 开发学习者，喜欢 3D 打印、无人机、摄影、台球。性格开朗，喜欢折腾软件开发、产品开发。">
+          <span class="warp-fallback" aria-hidden="true">一位 AI 开发学习者，喜欢 3D 打印、无人机、摄影、台球。性格开朗，喜欢折腾软件开发、产品开发。</span>
+        </div>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">看看我的项目</a>
+          <a href="#about" class="btn btn-ghost">关于我</a>
+        </div>
+      </div>
+
+      <a href="#projects" class="scroll-hint" aria-label="向下滚动，查看项目">
+        <span class="scroll-hint-text">下滑，看看我做过的东西</span>
+        <span class="scroll-hint-line"><i></i></span>
+      </a>
+    </section>
+
+    <!-- 项目 -->
+    <section class="section" id="projects">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker">PROJECTS</p>
+          <h2><span class="proximity" data-prox-label="项目">项目</span> <span class="sub">把想法一点点做出来</span></h2>
+          <p class="section-desc">3D 打印、无人机、摄影、软件开发、产品开发、台球——每个方向都留下一些记录。点击卡片查看全文。</p>
+        </header>
+
+        <div class="filters reveal" id="filters" role="tablist" aria-label="项目分类">
+          <button class="filter is-active" data-cat="all" role="tab" aria-selected="true">全部</button>
+          <button class="filter" data-cat="3D打印" role="tab" aria-selected="false">3D 打印</button>
+          <button class="filter" data-cat="无人机" role="tab" aria-selected="false">无人机</button>
+          <button class="filter" data-cat="摄影" role="tab" aria-selected="false">摄影</button>
+          <button class="filter" data-cat="软件开发" role="tab" aria-selected="false">软件开发</button>
+          <button class="filter" data-cat="产品开发" role="tab" aria-selected="false">产品开发</button>
+          <button class="filter" data-cat="台球" role="tab" aria-selected="false">台球</button>
+        </div>
+
+        <div class="card-grid" id="projectGrid"></div>
+        <p class="empty-state" id="projectEmpty" hidden>这个分类还没有文章，去「文章管理」发布第一篇吧。</p>
+      </div>
+    </section>
+
+    <!-- 游戏 -->
+    <section class="section" id="games">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker">GAMES</p>
+          <h2><span class="proximity" data-prox-label="游戏">游戏</span> <span class="sub">认真玩，也认真生活</span></h2>
+          <p class="section-desc">空闲时间常玩的几款。三角洲行动是最近的主战场，其他随心情切换。</p>
+        </header>
+
+        <div class="game-grid">
+          <article class="game-card reveal">
+            <div class="game-main">
+              <span class="game-badge">最近常玩</span>
+              <h3 class="proximity" data-prox-label="三角洲行动">三角洲行动</h3>
+            </div>
+            <div class="game-tags"><span>战术射击</span><span>开黑</span><span>PC</span></div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-main">
+              <h3 class="proximity" data-prox-label="无畏契约">无畏契约</h3>
+            </div>
+            <div class="game-tags"><span>FPS</span><span>排位</span></div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-main">
+              <h3 class="proximity" data-prox-label="黑神话：悟空">黑神话：悟空</h3>
+            </div>
+            <div class="game-tags"><span>单机</span><span>动作</span></div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-main">
+              <h3 class="proximity" data-prox-label="双人成行">双人成行</h3>
+            </div>
+            <div class="game-tags"><span>合作</span><span>闯关</span></div>
+          </article>
+
+          <article class="game-card reveal">
+            <div class="game-main">
+              <h3 class="proximity" data-prox-label="我的世界">我的世界</h3>
+            </div>
+            <div class="game-tags"><span>创造</span><span>红石</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 网页 -->
+    <section class="section" id="web">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="kicker">LINKS</p>
+          <h2>网页 <span class="sub">我常待的地方</span></h2>
+          <p class="section-desc">代码、视频和 AI 工具。点击即可在新标签页打开。</p>
+        </header>
+
+        <div class="icon-row">
+          <a class="icon-link reveal" href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <span class="link-icon" aria-hidden="true">GH</span>
+            <span class="icon-label">GitHub</span>
+          </a>
+
+          <a class="icon-link reveal" href="https://www.bilibili.com/" target="_blank" rel="noopener noreferrer" aria-label="哔哩哔哩">
+            <span class="link-icon" aria-hidden="true">B站</span>
+            <span class="icon-label">哔哩哔哩</span>
+          </a>
+
+          <a class="icon-link reveal" href="https://www.deepseek.com/" target="_blank" rel="noopener noreferrer" aria-label="DeepSeek">
+            <span class="link-icon" aria-hidden="true">DS</span>
+            <span class="icon-label">DeepSeek</span>
+          </a>
+
+          <a class="icon-link reveal" href="https://makerworld.com.cn/zh" target="_blank" rel="noopener noreferrer" aria-label="MakerWorld">
+            <span class="link-icon" aria-hidden="true">MW</span>
+            <span class="icon-label">MakerWorld</span>
+          </a>
+
+          <a class="icon-link reveal" href="https://www.aliyun.com/activity/hub/1111-cloud?utm_content=se_1024356197" target="_blank" rel="noopener noreferrer" aria-label="阿里云">
+            <span class="link-icon" aria-hidden="true">云</span>
+            <span class="icon-label">阿里云</span>
+          </a>
+
+          <a class="icon-link reveal" href="http://127.0.0.1:18181/#/basic/system" target="_blank" rel="noopener noreferrer" aria-label="提示词">
+            <span class="link-icon" aria-hidden="true">词</span>
+            <span class="icon-label">提示词</span>
+          </a>
+
+          <a class="icon-link reveal" href="https://test.luminastudio.com.cn/" target="_blank" rel="noopener noreferrer" aria-label="Lumina">
+            <span class="link-icon" aria-hidden="true">LU</span>
+            <span class="icon-label">Lumina</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文章管理 -->
+    <section class="section" id="manage">
+      <div class="container container-narrow">
+        <header class="section-head reveal">
+          <p class="kicker">ADMIN</p>
+          <h2>文章管理 <span class="sub">密码保护 · 本地发布</span></h2>
+          <p class="section-desc">输入密码后可以发布或删除文章。文章保存在当前浏览器中，发布后立刻出现在「项目」栏目。</p>
+        </header>
+
+        <div class="lock-card reveal" id="lockPanel">
+          <span class="lock-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <rect x="4.5" y="10.5" width="15" height="10" rx="2.2"></rect>
+              <path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7"></path>
+              <circle cx="12" cy="15.4" r="1.2" fill="currentColor" stroke="none"></circle>
+            </svg>
+          </span>
+          <h3>这是只属于站长的入口</h3>
+          <p>文章管理仅本站使用，不会影响其他栏目。</p>
+          <form class="unlock-form" id="unlockForm">
+            <input type="password" id="passwordInput" placeholder="请输入管理密码" autocomplete="current-password" aria-label="管理密码">
+            <button type="submit" class="btn btn-primary">解锁</button>
+          </form>
+          <p class="form-error" id="unlockError" role="alert" hidden>密码不对，再试一次。</p>
+        </div>
+
+        <div class="admin-panel" id="adminPanel" hidden>
+          <div class="admin-bar">
+            <span class="admin-status"><i></i>已解锁 · 文章保存在本机浏览器</span>
+            <button class="btn btn-mini btn-ghost" id="lockBtn" type="button">锁定</button>
+          </div>
+
+          <form class="publish-form" id="publishForm">
+            <div class="field">
+              <label for="articleTitle">标题</label>
+              <input type="text" id="articleTitle" name="title" maxlength="60" placeholder="例如：我的第一台 3D 打印机开箱" required>
+            </div>
+
+            <div class="field">
+              <label for="articleCategory">分类</label>
+              <select id="articleCategory" name="category" required>
+                <option value="3D打印">3D 打印</option>
+                <option value="无人机">无人机</option>
+                <option value="摄影">摄影</option>
+                <option value="软件开发">软件开发</option>
+                <option value="产品开发">产品开发</option>
+                <option value="台球">台球</option>
+              </select>
+            </div>
+
+            <div class="field field-full">
+              <label for="articleExcerpt">摘要</label>
+              <textarea id="articleExcerpt" name="excerpt" rows="2" maxlength="150" placeholder="一两句话介绍这篇记录（最多 150 字）" required></textarea>
+            </div>
+
+            <div class="field field-full">
+              <label for="articleBody">正文</label>
+              <textarea id="articleBody" name="body" rows="7" placeholder="写点什么吧。空一行会自动分段。" required></textarea>
+            </div>
+
+            <div class="field field-full">
+              <label for="articleLink">相关链接（选填）</label>
+              <input type="url" id="articleLink" name="link" placeholder="https://…">
+            </div>
+
+            <div class="form-actions field-full">
+              <button type="submit" class="btn btn-primary">发布文章</button>
+              <span class="form-hint">发布后会立即出现在项目栏目顶部</span>
+            </div>
+          </form>
+
+          <div class="admin-list-head">
+            <h3>已发布文章 <span id="articleCount">0</span></h3>
+          </div>
+          <div class="admin-list" id="adminList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 关于 -->
+    <section class="section section-about" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-main reveal">
+            <p class="kicker">ABOUT</p>
+            <h2>我是 SHIQI <span class="sub">王仕祺</span></h2>
+            <p>我叫王仕祺，网名 SHIQI，现在在合肥，是一名 AI 开发学习者。平时大部分时间都在和代码、模型、各种新工具打交道，喜欢把脑子里的想法尽快变成一个能跑起来的东西。</p>
+            <p>3D 打印、无人机、摄影、台球，这些看起来没什么关系的爱好，其实都在训练同一件事：观察、动手、然后在失败里再试一次。性格开朗，所以也喜欢把折腾的过程分享出来。</p>
+            <p>这个站点是我自己用 HTML、CSS 和 JavaScript 一点点搭起来的。底图是梵高的星空，上面浮着一束束会随鼠标偏转的光纤——就像学习这件事，换个角度看，总能看到新的东西。</p>
+
+            <ul class="about-facts">
+              <li><span>坐标</span><strong>合肥</strong></li>
+              <li><span>身份</span><strong>AI 开发学习者</strong></li>
+              <li><span>状态</span><strong>持续折腾中</strong></li>
+            </ul>
+
+            <div class="contact">
+              <span class="contact-label">想聊点什么，随时找我</span>
+              <div class="contact-row">
+                <a class="contact-mail" href="mailto:932652826@qq.com">932652826@qq.com</a>
+                <button class="btn btn-mini btn-ghost" id="copyMail" type="button" data-copy="932652826@qq.com">复制邮箱</button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="about-side reveal">
+            <blockquote>“我不懂星空，<br>但我愿意为它写一整夜的代码。”</blockquote>
+            <div class="about-side-meta">
+              <span>SHIQI</span>
+              <span>Hefei, Anhui</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 SHIQI · 用光影和代码搭起来的小站</p>
+    <a href="#home" class="back-top">回到顶部 ↑</a>
+  </footer>
+
+  <!-- 文章阅读弹窗 -->
+  <div class="modal" id="articleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-backdrop" data-close></div>
+    <article class="modal-card">
+      <button class="modal-close" type="button" data-close aria-label="关闭">×</button>
+      <p class="modal-cat" id="modalCat"></p>
+      <h2 id="modalTitle"></h2>
+      <p class="modal-meta" id="modalMeta"></p>
+      <div class="modal-body" id="modalBody"></div>
+      <a class="modal-link" id="modalLink" href="#" target="_blank" rel="noopener noreferrer" hidden>查看相关链接 ↗</a>
+    </article>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
